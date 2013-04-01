@@ -1,0 +1,40 @@
+<?php
+session_start();
+
+require "../../libs/mysql-connect.php";
+require "../../libs/config.php";
+require "../../libs/general.php";
+require "functions.php";
+
+admin_only();
+
+$new_user = $_POST["new_user"];
+
+$username = $_POST["username"];
+$username = stripslashes($username);
+$username = mysql_real_escape_string($username);
+
+$admin_pass = $_POST["admin_pass"];
+$admin_pass = hash("sha256", $admin_pass);
+
+$new_pass = $_POST["new_pass"];
+$re_pass = $_POST["re_pass"];
+$account_type = $_POST["account_type"];
+
+if (new_user && mysql_num_rows(mysql_query("SELECT * FROM sscas.logins WHERE usename=\"$username\"")) > 0) {
+    echo 0;    
+}else if ($admin_pass != $_SESSION["password_hash"]) {
+    echo $_SESSION["password_hash"];
+#    echo 1;
+} else if ($new_pass != $re_pass) {
+    echo 2;
+} else {
+    $password = hash("sha256", $new_pass);
+    if ($new_user) {
+	echo "INSERT INTO sscas.logins VALUES (\"$username\", \"$password\", $account_type)";
+        mysql_query("INSERT INTO sscas.logins VALUES (\"$username\", \"$password\", $account_type)");
+    } else {
+        mysql_query("UPDATE sscas.logins SET password_hash=\"$password\", account_type=$account_type WHERE username=$username");
+    }
+}
+?>
