@@ -37,6 +37,9 @@ a.menu-item:hover{
 #login-div {
     padding: 10px;
     border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 222px;
 }
 
 #new-user-box {

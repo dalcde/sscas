@@ -42,6 +42,6 @@ require "libs/general.php";
 <?php
 # Redirect to login page if not logged in
 if (!logged_in() && $page != "login" && $page != "check-login") {
-  header("location:index.php?p=login&redirect=$page");
+  header("location:login.php?redirect=$page");
 }
 ?>
