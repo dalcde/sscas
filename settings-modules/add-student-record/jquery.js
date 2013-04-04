@@ -6,7 +6,7 @@ function get_date_string() {
     var date = d.getDate();
 
     if (date < 10) {
-	date = "0" + date; // Append "0" if needed for ISO 8601 compliance
+        date = "0" + date; // Append "0" if needed for ISO 8601 compliance
     }
     if (month < 10) {
         month = "0" + month;
@@ -55,7 +55,6 @@ $(function() {
                     url: "settings-modules/add-student-record/write_database.php",
                     data: "array=" + data + "&record=" + $("#name").val(),
                     success: function(data) {
-                        alert(data);
                         $("#loader").hide();
                         if(data) {
                             alert ("Successfully imported student record");
@@ -63,9 +62,10 @@ $(function() {
                             alert ("failed");
                         }
                         $("#upload_dialog").dialog('close');
+                        document.location.reload();
                     }
                 });
-	    }
+            }
         });
         return false;
     });

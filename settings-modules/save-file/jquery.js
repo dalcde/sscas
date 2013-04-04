@@ -34,6 +34,7 @@ $(function() {
                     } else {
                         alert ("Failed to create save file");
                     }
+                    document.location.reload();
                 }
             });
          }
