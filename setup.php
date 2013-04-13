@@ -1,3 +1,9 @@
+<?php
+$conn = mysql_connect("localhost", "sscas", "sscas");
+if ($conn && ! $_GET("force")) {
+   header("location:login.php");
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
