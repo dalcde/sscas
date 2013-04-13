@@ -42,5 +42,6 @@ mysql_query("GRANT SELECT on student_records.* TO 'sscas'@'localhost'");
 mysql_query("GRANT SELECT,UPDATE,INSERT on sscas.* TO 'sscas_admin'@'localhost'");
 mysql_query("GRANT SELECT,UPDATE,CREATE,DROP,INSERT on save_files.* TO 'sscas_admin'@'localhost'");
 mysql_query("GRANT SELECT,UPDATE,CREATE,DROP,INSERT on student_records.* TO 'sscas_admin'@'localhost'");
-echo "success";
+
+header("location:login.php");
 ?>
