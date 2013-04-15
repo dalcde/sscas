@@ -1,4 +1,3 @@
-// -*- php-indent-level: 4; indent-tabs-mode: nil -*-
 <?php
 session_start();
 require "libs/mysql-connect.php";
