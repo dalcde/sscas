@@ -78,7 +78,7 @@ $save_file = get_save_file_table();
 $time_boundary = mysql_fetch_row(mysql_query("SELECT TIME FROM save_files.`$save_file` WHERE REGNO=0"))[0];
 
 $show_to_condition = ["present" => "(TIME <= '$time_boundary' && TIME != 0)",
-                      "late" => "TIME >= '$time_boundary'",
+                      "late" => "TIME > '$time_boundary'",
                       "absent" => "TIME = 0"];
 
 $results = [];
