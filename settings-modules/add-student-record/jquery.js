@@ -49,7 +49,6 @@ $(function() {
             contentType: false,
             processData: false,
             success: function(data) {
-                alert(data);
                 $.ajax({
                     type: "POST",
                     url: "settings-modules/add-student-record/write_database.php",
