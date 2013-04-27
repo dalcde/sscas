@@ -4,7 +4,8 @@ $pages=["Main"=>"home",
         "Report"=>"report"
         ];
 
-$admin_pages=["Settings"=>"settings"
+$admin_pages=["Settings"=>"settings",
+	      "Edit Entries"=>"edit"
               ];
 
 foreach ($pages as $name=>$page) {
