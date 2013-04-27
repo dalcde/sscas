@@ -4,7 +4,8 @@ const FIELDS = ['ENNAME',
                 'SCHHOUSE',
                 'CLASSCODE',
                 'CLASSNO',
-                'SEX'];
+                'SEX',
+                'TIME'];
 
 $(function() {
     $("#input").submit(function() {
