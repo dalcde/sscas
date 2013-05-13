@@ -14,13 +14,11 @@ $array = mysql_fetch_array($result);
 if ($array) {
    $TABLE=get_save_file_table();
 
-   # Check if student is entered
-   $result = mysql_query("SELECT * FROM save_files.`".$TABLE."` WHERE REGNO=".$_POST["REGNO"]);
-   $result = mysql_fetch_array($result);
-   if ($result["TIME"] != 0) {
+   if ($array["TIME"] != 0) {
       $array["duplicate"]=TRUE;
    } else {
       mysql_query("UPDATE save_files.`".$TABLE."` SET TIME=CURRENT_TIMESTAMP WHERE REGNO=".$_POST["REGNO"].";");
+      $array["TIME"] = date("Y-m-d h:i:s", time());
    }
 }
 
