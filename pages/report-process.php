@@ -5,6 +5,7 @@ $PAGE_COLUMNS = [["Stud. ID", "REGNO", 20],
 		 ["Class No", "CLASSNO", 20],
 		 ["English Name", "ENNAME", 60],
 		 ["Chinese Name", "CHNAME", 40],
+		 ["House", "SCHHOUSE", 13],
 		 ["Status", "STATUS", 20]];
 
 $HOUSE_NAMES = ["B" => "Barnett",
