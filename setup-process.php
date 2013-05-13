@@ -27,7 +27,7 @@ mysql_query("CREATE DATABASE student_records CHARACTER SET utf8 COLLATE utf8_bin
 mysql_query("CREATE TABLE sscas.logins(username VARCHAR(20),
                                        password_hash CHAR(65),
                                        type TINYINT)");
-mysql_query("CREATE TABLE sscas.config(save_file_table VARCHAR(20))"); 
+mysql_query("CREATE TABLE sscas.config(save_file_table VARCHAR(50))"); 
 
 mysql_query("INSERT INTO sscas.logins VALUES ('admin', '$password_hash', 0)");
 mysql_query("INSERT INTO sscas.config VALUES ('')");
