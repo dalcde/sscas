@@ -1,4 +1,10 @@
 // -*- js-indent-level: 4; indent-tabs-mode: nil -*-
+
+function prepend_zero(x) {
+    if (x < 10)
+        x = "0" + x;
+    return x;
+}
 $(function() {
       $("#date-entry").datepicker({dateFormat: "yy-mm-dd",
                                       showOtherMonths: true,
@@ -18,4 +24,9 @@ $(function() {
                  }
           });
       });
+    $("#time-now").click(function() {
+        var date = new Date();
+        $("#date-entry").val(date.getFullYear() + "-" + prepend_zero(date.getMonth()+1) + "-" + prepend_zero(date.getDate()));
+        $("#time-entry").val(prepend_zero(date.getHours()) + ":" + prepend_zero(date.getMinutes()) + ":" + prepend_zero(date.getSeconds()));
+    });
 });
