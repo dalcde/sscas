@@ -14,7 +14,7 @@ $array = mysql_fetch_array($result);
 if ($array) {
    $TABLE=get_save_file_table();
 
-   if ($array["TIME"] != 0) {
+   if ($array["TIME"] != 0 && !$_POST["FORCE"]) {
       $array["duplicate"]=TRUE;
    } else {
       mysql_query("UPDATE save_files.`".$TABLE."` SET TIME=CURRENT_TIMESTAMP WHERE REGNO=".$_POST["REGNO"].";");
