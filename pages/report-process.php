@@ -1,10 +1,10 @@
 <?php
 #                 HEADER, DATABASE_ENTRY, WIDTH
-$PAGE_COLUMNS = [["Stud. ID", "REGNO", 20],
-		 ["Class", "CLASSCODE", 13],
+$PAGE_COLUMNS = [["Class", "CLASSCODE", 13],
 		 ["Class No", "CLASSNO", 20],
 		 ["English Name", "ENNAME", 60],
-		 ["Chinese Name", "CHNAME", 40],
+		 ["Chinese Name", "CHNAME", 30],
+		 ["Sex", "SEX", 10],
 		 ["House", "SCHHOUSE", 13],
 		 ["Status", "STATUS", 20]];
 
@@ -55,11 +55,11 @@ function generate_page($name, $records, $pdf) {
     
     foreach ($records as $record) {
 	foreach ($PAGE_COLUMNS as $column) {
-	    if ($column[1] == "CHNAME") {
+	    if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
 		$pdf->SetFont('kozminproregular', '', 12);
 	    }
 	    $pdf->Cell($column[2],8,$record[$column[1]],1);
-	    if ($column[1] == "CHNAME") {
+	    if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
 		$pdf->SetFont('times', '', 12);
 	    }
 	}
@@ -81,7 +81,9 @@ $time_boundary = mysql_fetch_row(mysql_query("SELECT TIME FROM save_files.`$save
 $show_to_condition = ["present" => "(TIME <= '$time_boundary' && TIME != 0)",
                       "late" => "TIME > '$time_boundary'",
                       "absent" => "TIME = 0"];
-
+$STATUS_TO_SYMBOL = ["present" => "/",
+                     "late" => "ϕ",
+		     "absent" => "O"];
 $results = [];
 $SHOW_OPTIONS = ["present", "late", "absent"];
 
@@ -90,7 +92,7 @@ foreach ($SHOW_OPTIONS as $option) {
         $query = mysql_query("SELECT * FROM save_files.`$save_file` WHERE ".$show_to_condition[$option]." && REGNO != 0");
         $row = mysql_fetch_array($query);
         while ($row != NULL) {
-            $row["STATUS"]=$option;
+            $row["STATUS"]=$STATUS_TO_SYMBOL[$option];
             array_push($results, $row);
             $row = mysql_fetch_array($query);
         }
