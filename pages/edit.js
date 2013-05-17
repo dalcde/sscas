@@ -56,5 +56,21 @@ $(function() {
         });
         return false;
     });
+    $("#remove").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "pages/edit-process.php",
+            data: "REGNO="+REGNO + "&TIME=0",
+             success: function(data) {
+                if (data) {
+                    alert("Successfully updated timestamp");
+                    $('#date-entry').val("0000-00-00");
+                    $('#time-entry').val("00:00:00");
+                } else {
+                    alert("Failed to update timestamp");
+                }
+	    }
+        });
+        return false;
+    });
 });
-p

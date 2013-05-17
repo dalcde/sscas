@@ -42,7 +42,8 @@ admin_only();
 	  <td>
 	    <input type="text" id="date-entry" /> <br />
 	    <input type="text" id="time-entry"/> <br />
-	    <input type="button" id="edit" value="Edit" />
+	    <input type="button" id="edit" value="Edit" /> <br />
+	    <input type="button" id="remove" value="Remove entry" />
 	  </td>
 	</tr>
       </table>
