@@ -32,6 +32,6 @@ if ($count == 1) {
     header("location:index.php");
   }
 } else {
-  header("location:index.php?p=login&fail=true");
+  header("location:login.php?fail=true");
 }
 ?>
