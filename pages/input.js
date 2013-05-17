@@ -16,15 +16,19 @@ function on_success(data) {
 	$('#photo').html("<img src=\"photos/"+id+".JPG\" alt=\"No photo found: "+id+"\"width=\"236\" height=\"295\"/>");
 
 	if (data["duplicate"]) {
-	    result = confirm("Student "+ id + " already entered. Update timestamp?");
-            if (result) { 
-                $.ajax({
-                    type: "POST",
-                    url: "pages/input-process.php",
-                    data: "REGNO="+$("#REGNO").val() + "&FORCE=true",
-                    dataType: 'json',
-                    success: on_success
-                });
+            if (data["prompt"]) {
+	        result = confirm("Student "+ id + " already entered. Update timestamp?");
+                if (result) { 
+                    $.ajax({
+                        type: "POST",
+                        url: "pages/input-process.php",
+                        data: "REGNO="+$("#REGNO").val() + "&FORCE=true",
+                        dataType: 'json',
+                        success: on_success
+                    });
+                }
+            } else {
+                alert("Student "+ id + " already entered.");
             }
 	}
     } else {
