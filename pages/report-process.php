@@ -56,7 +56,7 @@ function generate_page($name, $records, $pdf) {
     foreach ($records as $record) {
 	foreach ($PAGE_COLUMNS as $column) {
 	    if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
-		$pdf->SetFont('kozminproregular', '', 12);
+		$pdf->SetFont('stsongstdlight', '', 12);
 	    }
 	    $pdf->Cell($column[2],8,$record[$column[1]],1);
 	    if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
