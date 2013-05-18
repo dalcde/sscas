@@ -1,4 +1,13 @@
 <?php
+require_once("../libs/mysql-connect.php");
+require_once("../libs/config.php");
+require_once("tcpdf/tcpdf.php");
+
+$show_by = $_POST["show_by"];
+$show = explode(",",$_POST["show"]);
+$output_format = $_POST["format"];
+
+
 #                 HEADER, DATABASE_ENTRY, WIDTH
 $PAGE_COLUMNS = [["Class", "CLASSCODE", 13],
 		 ["Class No", "CLASSNO", 20],
@@ -14,65 +23,88 @@ $HOUSE_NAMES = ["B" => "Barnett",
 		"M" => "Martin",
 		"P" => "Priestley",
 		"S" => "Stewert"];
-		 
+
+$OUTPUT_FORMAT_PDF = "pdf";
+$OUTPUT_FORMAT_CSV = "csv";
+
 function sort_record($record) {
-    usort($record, function($a, $b) {
-	if ($a["CLASSCODE"] > $b["CLASSCODE"]) {
-	    return 1;
-	} else if ($a["CLASSCODE"] < $b["CLASSCODE"]) {
-	    return -1;
-	} else {
-	    return ($a["CLASSNO"] > $b["CLASSNO"]) ? 1 : -1;
-	}
+  usort($record, function($a, $b) {
+      if ($a["CLASSCODE"] > $b["CLASSCODE"]) {
+	return 1;
+      } else if ($a["CLASSCODE"] < $b["CLASSCODE"]) {
+	return -1;
+      } else {
+	return ($a["CLASSNO"] > $b["CLASSNO"]) ? 1 : -1;
+      }
     });
-    return $record;
+  return $record;
 }
 
-function generate_page($name, $records, $pdf) {
-    global $PAGE_COLUMNS;
+function generate_page($name, $records, $output) {
+  global $output_format;
+  global $OUTPUT_FORMAT_PDF;
+  global $OUTPUT_FORMAT_CSV;
 
-    usort($records, function($a, $b) {
-	if ($a["CLASSCODE"] > $b["CLASSCODE"]) {
-	    return 1;
-	} else if ($a["CLASSCODE"] < $b["CLASSCODE"]) {
-	    return -1;
-	} else {
-	    return ($a["CLASSNO"] > $b["CLASSNO"]) ? 1 : -1;
-	}
+  usort($records, function($a, $b) {
+      if ($a["CLASSCODE"] > $b["CLASSCODE"]) {
+	return 1;
+      } else if ($a["CLASSCODE"] < $b["CLASSCODE"]) {
+	return -1;
+      } else {
+	return ($a["CLASSNO"] > $b["CLASSNO"]) ? 1 : -1;
+      }
     });
 
-    $pdf->AddPage();
-    $pdf->SetFont("","B",16);
-    $pdf->Cell(40,8,$name);
-    $pdf->Ln();
+  switch ($output_format) {
+  case $OUTPUT_FORMAT_PDF:
+    generate_page_pdf($name, $records, $output);
+    break;
+  case $OUTPUT_FORMAT_CSV:
+    generate_page_csv($name, $records, $output);
+    break;
+  }
+}
 
-    # Header
-    $pdf->SetFont("","",12);
-    foreach ($PAGE_COLUMNS as $column) {
-	$pdf->Cell($column[2],8,$column[0],1);
-    }
-    $pdf->Ln();
+function generate_page_pdf($name, $records, $pdf) {
+  global $PAGE_COLUMNS;
+
+  $pdf->AddPage();
+  $pdf->SetFont("","B",16);
+  $pdf->Cell(40,8,$name);
+  $pdf->Ln();
+
+  # Header
+  $pdf->SetFont("","",12);
+  foreach ($PAGE_COLUMNS as $column) {
+    $pdf->Cell($column[2],8,$column[0],1);
+  }
+  $pdf->Ln();
     
-    foreach ($records as $record) {
-	foreach ($PAGE_COLUMNS as $column) {
-	    if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
-		$pdf->SetFont('stsongstdlight', '', 12);
-	    }
-	    $pdf->Cell($column[2],8,$record[$column[1]],1);
-	    if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
-		$pdf->SetFont('times', '', 12);
-	    }
-	}
-	$pdf->Ln();
+  foreach ($records as $record) {
+    foreach ($PAGE_COLUMNS as $column) {
+      if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
+	$pdf->SetFont('stsongstdlight', '', 12);
+      }
+      $pdf->Cell($column[2],8,$record[$column[1]],1);
+      if ($column[1] == "CHNAME" || $column[1] == "STATUS") {
+	$pdf->SetFont('times', '', 12);
+      }
     }
+    $pdf->Ln();
+  }
 }
 
-require_once("../libs/mysql-connect.php");
-require_once("../libs/config.php");
-require_once("tcpdf/tcpdf.php");
-
-$show_by = $_POST["show_by"];
-$show = explode(",",$_POST["show"]);
+function generate_page_csv($name, $records, $file) {
+  global $PAGE_COLUMNS;
+  
+  foreach ($records as $record) {
+    $array = [];
+    foreach ($PAGE_COLUMNS as $column) {
+      array_push($array,$record[$column[1]]);;
+    }
+    fputcsv($file, $array);
+  }
+}
 
 $save_file = get_save_file_table();
 
@@ -99,12 +131,20 @@ foreach ($SHOW_OPTIONS as $option) {
     }
 }
 
-$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-$pdf->SetFont('times', '', 12);
-$pdf->SetHeaderData("", PDF_HEADER_LOGO_WIDTH, "Test", "Test");
-
+if ($output_format == $OUTPUT_FORMAT_PDF) {
+  $output = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+  $output->SetFont('times', '', 12);
+  $output->SetHeaderData("", PDF_HEADER_LOGO_WIDTH, "Test", "Test");
+} else if ($output_format == $OUTPUT_FORMAT_CSV) {
+  $output = fopen("../tmp/$save_file-$show_by-".implode("-", $show).".csv", "w");
+  $items = [];
+  foreach ($PAGE_COLUMNS as $column) {
+    array_push($items, $column[1]);
+  }
+  fputcsv($output, $items);
+}
 if ($show_by == "all") {
-    generate_page("All", $results, $pdf);
+    generate_page("All", $results, $output);
 } else if ($show_by == "house") {
     $houses_query = mysql_query("SELECT DISTINCT SCHHOUSE FROM save_files.`$save_file`");
     $houses = [];
@@ -124,7 +164,7 @@ if ($show_by == "all") {
 	    global $house;
 	    return $var["SCHHOUSE"] == $house;
 	});
-	generate_page($HOUSE_NAMES[$house], $filtered, $pdf);
+	generate_page($HOUSE_NAMES[$house], $filtered, $output);
     }
 } else if ($show_by == "class") {
     $classes_query = mysql_query("SELECT DISTINCT CLASSCODE FROM save_files.`$save_file`");
@@ -145,11 +185,16 @@ if ($show_by == "all") {
 	    global $class;
 	    return $var["CLASSCODE"] == $class;
 	});
-	generate_page($class, $filtered, $pdf);
+	generate_page($class, $filtered, $output);
     }
 }
 
-$name = "tmp/$save_file-$show_by-".implode("-", $show).".pdf";
-$pdf->Output("../$name", "F");
-echo $name;
+if ($output_format == $OUTPUT_FORMAT_PDF) {
+  $name = "tmp/$save_file-$show_by-".implode("-", $show).".pdf";
+  $output->Output("../$name", "F");
+  echo $name;
+} else if ($output_format == $OUTPUT_FORMAT_CSV) {
+  fclose($output);
+  echo "tmp/$save_file-$show_by-".implode("-", $show).".csv";
+}
 ?>

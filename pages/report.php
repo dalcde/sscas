@@ -22,5 +22,13 @@ Generate report:
       </span>
     </td>
   </tr>
+  <tr>
+    <td>Output format</td>
+    <td>
+      <span id="format">
+	<input type="radio" id="pdf" value="pdf" name="format" checked="checked"><label for="pdf">PDF</label></input>
+	<input type="radio" id="csv" value="csv" name="format"><label for="csv">CSV</label></input>
+      </span>
+    </td>
 </table>
 <input id="generate-button" type="button" value="Generate"></input>
