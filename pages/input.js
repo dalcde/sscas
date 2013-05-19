@@ -6,6 +6,17 @@ const FIELDS = ['ENNAME',
                 'CLASSNO',
                 'SEX',
                 'TIME'];
+const TIMEOUT_INTERVAL = 10*1000;
+var last_record = null;
+
+function check_remove_info(id) {
+    if (last_record == id) {
+	for (var i in FIELDS) {
+	    $('#' + FIELDS[i]).html("");
+	    $('#photo').html("");
+	}
+    }
+}
 
 function on_success(data) {
     var id = $("#REGNO").val();
@@ -31,6 +42,8 @@ function on_success(data) {
                 alert("Student "+ id + " already entered.");
             }
 	}
+        last_record = data["TIME"];
+        setTimeout(function() {check_remove_info(data["TIME"]);}, TIMEOUT_INTERVAL);
     } else {
 	alert("Student " + id + " does not exist");
 	for (var i in FIELDS) {
