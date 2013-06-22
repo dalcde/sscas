@@ -24,8 +24,8 @@ $HOUSE_NAMES = ["B" => "Barnett",
 		"P" => "Priestley",
 		"S" => "Stewert"];
 
-$OUTPUT_FORMAT_PDF = "pdf";
-$OUTPUT_FORMAT_CSV = "csv";
+define("OUTPUT_FORMAT_PDF", "pdf");
+define("OUTPUT_FORMAT_CSV", "csv");
 
 function sort_record($record) {
   usort($record, function($a, $b) {
@@ -42,8 +42,6 @@ function sort_record($record) {
 
 function generate_page($name, $records, $output) {
   global $output_format;
-  global $OUTPUT_FORMAT_PDF;
-  global $OUTPUT_FORMAT_CSV;
 
   usort($records, function($a, $b) {
       if ($a["CLASSCODE"] > $b["CLASSCODE"]) {
@@ -56,10 +54,10 @@ function generate_page($name, $records, $output) {
     });
 
   switch ($output_format) {
-  case $OUTPUT_FORMAT_PDF:
+  case OUTPUT_FORMAT_PDF:
     generate_page_pdf($name, $records, $output);
     break;
-  case $OUTPUT_FORMAT_CSV:
+  case OUTPUT_FORMAT_CSV:
     generate_page_csv($name, $records, $output);
     break;
   }
@@ -131,11 +129,11 @@ foreach ($SHOW_OPTIONS as $option) {
     }
 }
 
-if ($output_format == $OUTPUT_FORMAT_PDF) {
+if ($output_format == OUTPUT_FORMAT_PDF) {
   $output = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
   $output->SetFont('times', '', 12);
   $output->SetHeaderData("", PDF_HEADER_LOGO_WIDTH, "Test", "Test");
-} else if ($output_format == $OUTPUT_FORMAT_CSV) {
+} else if ($output_format == OUTPUT_FORMAT_CSV) {
   $output = fopen("../tmp/$save_file-$show_by-".implode("-", $show).".csv", "w");
   $items = [];
   foreach ($PAGE_COLUMNS as $column) {
@@ -189,11 +187,11 @@ if ($show_by == "all") {
     }
 }
 
-if ($output_format == $OUTPUT_FORMAT_PDF) {
+if ($output_format == OUTPUT_FORMAT_PDF) {
   $name = "tmp/$save_file-$show_by-".implode("-", $show).".pdf";
   $output->Output("../$name", "F");
   echo $name;
-} else if ($output_format == $OUTPUT_FORMAT_CSV) {
+} else if ($output_format == OUTPUT_FORMAT_CSV) {
   fclose($output);
   echo "tmp/$save_file-$show_by-".implode("-", $show).".csv";
 }

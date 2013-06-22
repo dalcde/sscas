@@ -9,7 +9,7 @@ admin_only();
 	<tr>
 	  <td>Student ID:</td><td>
 	  <form name="input" id="input">
-	    <input type="text" id="REGNO"/>
+	    <input type="tel" id="REGNO"/>
 	  </form>
 	</td>
 	</tr>

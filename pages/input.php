@@ -6,7 +6,7 @@
 	<tr>
 	  <td>Student ID:</td><td>
 	  <form name="input" id="input" action="">
-	    <input type="text" id="REGNO" action=""/>
+	    <input type="tel" id="REGNO" action=""/>
 	  </form>
 	</td>
 	</tr>

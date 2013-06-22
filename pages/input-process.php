@@ -14,7 +14,7 @@ $TABLE=get_save_file_table();
 $result = mysql_query("SELECT * FROM save_files.`".$TABLE."` WHERE REGNO=".$_POST["REGNO"]);
 $array = mysql_fetch_array($result);
 
-$log_line = $_SERVER["REMOTE_ADDR"]." ".date("Y-m-d h:i:s", time())." ".$_POST["REGNO"]." ";
+$log_line = "INPUT ".$_SERVER["REMOTE_ADDR"]." ".$_POST["REGNO"]." ".date("Y-m-d h:i:s", time())." ";
 
 if ($array) {
   $TABLE=get_save_file_table();
