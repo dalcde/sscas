@@ -1,8 +1,5 @@
-var selection = "";
+var selection = "New User";
 $(function() {
-    $("#submit").prop("disabled", true);
-    $("input[type=text]").prop("disabled", true);
-    $("input[type=password]").prop("disabled", true);
     $(".user-accounts-select").click(function() {
         selection = $(this).html();
         if (selection != "New User") {
@@ -14,6 +11,9 @@ $(function() {
         }
         $("input[type=password]").prop("disabled", false);
         $("#submit").prop("disabled", false);
+	$("#new-password").val("");
+	$("#re-password").val("");
+	$("#admin-password").val("");
     });
     $("#submit").click(function() {
         var account_type = $("#account-type").val();

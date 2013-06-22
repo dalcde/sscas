@@ -32,7 +32,7 @@
     </tr>
     <tr>
       <td>Account type:</td>
-      <td><select id="account-type"><option>Admin</option><option>Regular</option></select></td>
+      <td><select id="account-type"><option>Regular</option><option>Admin</option></select></td>
     <tr>
       <td />
       <td><input type="submit" id="submit"value="Submit" /></td>
