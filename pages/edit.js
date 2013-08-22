@@ -23,21 +23,21 @@ $(function() {
                 var id = $("#REGNO").val();
                 if (data) {
                     for (var i in FIELDS) {
-			$('#' + FIELDS[i]).html(data[FIELDS[i]]);
-		    }
-		    $('#photo').html("<img src=\"photos/"+id+".JPG\" alt=\"No photo found: "+id+"\"width=\"236\" height=\"295\"/>");
+                        $('#' + FIELDS[i]).html(data[FIELDS[i]]);
+                    }
+                    $('#photo').html("<img src=\"photos/"+id+".JPG\" alt=\"No photo found: "+id+"\"width=\"236\" height=\"295\"/>");
                     $('#date-entry').val(data["TIME"].split(" ")[0]);
                     $('#time-entry').val(data["TIME"].split(" ")[1]);
-		} else {
-		    alert("Student " + id + " does not exist");
-		    for (var i in FIELDS) {
-			$('#' + FIELDS[i]).html("");
-			$('#photo').html("");
-		    }
-		}
+                } else {
+                    alert("Student " + id + " does not exist");
+                    for (var i in FIELDS) {
+                        $('#' + FIELDS[i]).html("");
+                        $('#photo').html("");
+                    }
+                }
                 REGNO = $("#REGNO").val();
-		$("#REGNO").select();
-	    }
+                $("#REGNO").select();
+            }
         });
         return false;
     });
@@ -52,7 +52,7 @@ $(function() {
                 } else {
                     alert("Failed to update timestamp");
                 }
-	    }
+            }
         });
         return false;
     });
@@ -69,7 +69,7 @@ $(function() {
                 } else {
                     alert("Failed to update timestamp");
                 }
-	    }
+            }
         });
         return false;
     });

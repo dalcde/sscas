@@ -1,6 +1,6 @@
 <?php
 if ($_POST["REGNO"] == NULL || $_POST["REGNO"] == 0) {
-  return;
+     return;
 }
 
 require_once("../libs/mysql-connect.php");

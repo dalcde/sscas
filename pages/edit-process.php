@@ -3,7 +3,7 @@ $TIME=$_POST["TIME"];
 $REGNO=$_POST["REGNO"];
 
 if ($REGNO == NULL || $REGNO == 0) {
-  return;
+    return;
 }
 
 require_once("../libs/mysql-connect.php");
@@ -18,10 +18,10 @@ $log_line = "EDIT  ".$_SERVER["REMOTE_ADDR"]." ".$_POST["REGNO"]." ".$array["TIM
 
 $result =  mysql_query("UPDATE save_files.`$TABLE` SET TIME='$TIME' WHERE REGNO=$REGNO");
 if ($result) {
-  $log_file = fopen("../log/$TABLE.log", "a");
-  if ($log_file) {
-    fwrite($log_file, $log_line."\n");
-  }
+    $log_file = fopen("../log/$TABLE.log", "a");
+    if ($log_file) {
+        fwrite($log_file, $log_line."\n");
+    }
 }
 
 echo $result;

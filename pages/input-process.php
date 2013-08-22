@@ -2,7 +2,7 @@
 session_start();
 
 if ($_POST["REGNO"] == NULL || $_POST["REGNO"] == 0) {
-  return;
+    return;
 }
 
 require_once("../libs/general.php");
@@ -17,30 +17,30 @@ $array = mysql_fetch_array($result);
 $log_line = "INPUT ".$_SERVER["REMOTE_ADDR"]." ".$_POST["REGNO"]." ".date("Y-m-d h:i:s", time())." ";
 
 if ($array) {
-  $TABLE=get_save_file_table();
+    $TABLE=get_save_file_table();
 
-  if ($array["TIME"] != 0 && !$_POST["FORCE"]) {
-    $array["duplicate"]=TRUE;
-    if (is_admin()) {
-      $array["prompt"]=TRUE;
+    if ($array["TIME"] != 0 && !$_POST["FORCE"]) {
+        $array["duplicate"]=TRUE;
+        if (is_admin()) {
+            $array["prompt"]=TRUE;
+        } else {
+            $array["prompt"]=FALSE;
+        }
+        $log_line = $log_line."DUPLICATE";
     } else {
-      $array["prompt"]=FALSE;
+        if ($_POST["FORCE"]) {
+            $log_line = $log_line."DUPLICATE OVERWRITE";
+        }
+        mysql_query("UPDATE save_files.`".$TABLE."` SET TIME=CURRENT_TIMESTAMP WHERE REGNO=".$_POST["REGNO"].";");
+        $array["TIME"] = date("Y-m-d h:i:s", time());
     }
-    $log_line = $log_line."DUPLICATE";
-  } else {
-    if ($_POST["FORCE"]) {
-      $log_line = $log_line."DUPLICATE OVERWRITE";
-    }
-    mysql_query("UPDATE save_files.`".$TABLE."` SET TIME=CURRENT_TIMESTAMP WHERE REGNO=".$_POST["REGNO"].";");
-    $array["TIME"] = date("Y-m-d h:i:s", time());
-  }
 } else {
-  $log_line = $log_line."NOT FOUND";
+    $log_line = $log_line."NOT FOUND";
 }
 
 $log_file = fopen("../log/$TABLE.log", "a");
 if ($log_file) {
-  fwrite($log_file, $log_line."\n");
+    fwrite($log_file, $log_line."\n");
 }
 
 echo json_encode($array);
