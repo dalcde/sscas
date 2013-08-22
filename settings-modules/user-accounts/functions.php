@@ -5,8 +5,8 @@ function list_users(){
     $list = [];
     $row = mysql_fetch_array($result);
     while ($row != NULL) {
-	array_push($list, [$row["username"], $row["type"]]);
-	$row = mysql_fetch_array($result);
+        array_push($list, [$row["username"], $row["type"]]);
+        $row = mysql_fetch_array($result);
     }
     return $list;
 }

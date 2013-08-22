@@ -8,8 +8,8 @@ Select attendance record
         $curr_table = get_save_file_table();
         foreach ($table as $rec) {
             $class = "save-file-select";
-	    if ($rec == $curr_table) {
-	        $class = "save-file-select save-file-select-current";
+            if ($rec == $curr_table) {
+                $class = "save-file-select save-file-select-current";
             }
             echo "<a href=\"#\" class=\"$class\">".$rec."</a>";
        }

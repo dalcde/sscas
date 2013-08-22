@@ -18,13 +18,13 @@ if ($_FILES["file"]["error"] > 0) {
     $file = utf8_fopen_read($_FILES["file"]["tmp_name"], "r");
     $lines = [trim(fgets($file))]; # Add first line (entry order) first so that it doesn't get quoted
     while (!feof($file)) {
-	$line = fgetcsv($file);
-	for ($i = 0; $i < count($line); $i++) {
-	    if (!is_numeric($line[$i])) {
-	       $line[$i] = "\"".$line[$i]."\"";
-	    }
-	}
-	array_push($lines, implode(",", $line));
+        $line = fgetcsv($file);
+        for ($i = 0; $i < count($line); $i++) {
+            if (!is_numeric($line[$i])) {
+               $line[$i] = "\"".$line[$i]."\"";
+            }
+        }
+        array_push($lines, implode(",", $line));
     }
     echo json_encode($lines);
 }

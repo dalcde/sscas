@@ -7,8 +7,8 @@ function prepend_zero(x) {
 }
 $(function() {
       $("#date-entry").datepicker({dateFormat: "yy-mm-dd",
-                                      showOtherMonths: true,
-                                      selectOtherMonths: true});
+                                   showOtherMonths: true,
+                                   selectOtherMonths: true});
       $("#time-entry").timeEntry({showSeconds: true, show24Hours: true, spinnerImage: ''});
       $("#submit").click(function() {
           $.ajax({
