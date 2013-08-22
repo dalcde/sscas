@@ -1,6 +1,5 @@
 <?php
-  require "libs/config.php";
-  require "settings-modules/time-property/functions.php";
+  require_once("settings-modules/time-property/functions.php");
 ?>
 <script src="settings-modules/time-property/jquery.js" type="text/javascript"></script>
 <form id="time-form">

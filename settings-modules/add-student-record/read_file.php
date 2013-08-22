@@ -1,8 +1,8 @@
 <?php
 session_start();
-require "../../libs/mysql-connect.php";
-require "../../libs/config.php";
-require "functions.php";
+require_once("../../libs/mysql-connect.php");
+require_once("../../libs/config.php");
+require_once("functions.php");
 
 function utf8_fopen_read($fileName) {
     $fc = iconv('UTF-16', 'UTF-8', file_get_contents($fileName));

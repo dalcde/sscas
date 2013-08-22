@@ -3,7 +3,7 @@
 <div id="user-accounts-box">
  <div id="user-list-div">
     <?php
-        require "settings-modules/user-accounts/functions.php";
+        require_once("settings-modules/user-accounts/functions.php");
 
         $users = list_users();
         foreach ($users as $user) {

@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-require "libs/mysql-connect.php";
-require "libs/general.php";
-require "libs/config.php";
+require_once("libs/mysql-connect.php");
+require_once("libs/general.php");
+require_once("libs/config.php");
 ?>
 <!DOCTYPE html>
 <html>

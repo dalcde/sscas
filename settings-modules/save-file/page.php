@@ -3,8 +3,7 @@
 Select attendance record
 <div id="save-file-select-div">
     <?php
-        require "settings-modules/save-file/functions.php";
-        require "libs/config.php";
+        require_once("settings-modules/save-file/functions.php");
         $table = list_tables();
         $curr_table = get_save_file_table();
         foreach ($table as $rec) {

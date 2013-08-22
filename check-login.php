@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "libs/mysql-connect.php";
+require_once("libs/mysql-connect.php");
 
 $DATABASE="sscas";
 $TABLE="logins";
