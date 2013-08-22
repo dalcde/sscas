@@ -6,7 +6,8 @@
         <tr>
           <td>Student ID:</td><td>
           <form name="input" id="input" action="">
-            <input type="tel" id="REGNO" action=""/>
+            <input type="tel" id="REGNO" action=""/><br />
+	    <input type="submit" value="Enter"/>
           </form>
         </td>
         </tr>
