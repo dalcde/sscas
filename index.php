@@ -3,6 +3,7 @@ session_start();
 
 require "libs/mysql-connect.php";
 require "libs/general.php";
+require "libs/config.php";
 ?>
 <!DOCTYPE html>
 <html>

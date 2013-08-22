@@ -1,6 +1,7 @@
 <?php
 $pages=["Main"=>"home",
         "Input"=>"input",
+	"Statistics"=>"stats",
         "Report"=>"report"
         ];
 
