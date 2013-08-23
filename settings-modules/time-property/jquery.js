@@ -10,7 +10,7 @@ $(function() {
                                    showOtherMonths: true,
                                    selectOtherMonths: true});
       $("#time-entry").timeEntry({showSeconds: true, show24Hours: true, spinnerImage: ''});
-      $("#submit").click(function() {
+      $("#submit-time").click(function() {
           $.ajax({
                  type: "POST",
                  url: "settings-modules/time-property/process.php",

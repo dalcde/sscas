@@ -1,5 +1,5 @@
 <?php
-    function list_tables() {
+function list_records_tables() {
     $result = mysql_query("SHOW TABLES FROM student_records");
 
     $list = [];
@@ -29,13 +29,5 @@ function add_student_record_to_save_file($student_record) {
         $row = mysql_fetch_array($list);
     }
     return $duplicate;
-#}
-
-#    return mysql_query("INSERT `save_files`.`$save_file` (REGNO, ENNAME, CHNAME, CLASSCODE, CLASSNO, SCHHOUSE, SEX) SELECT * from `student_records`.`$student_record`;");
-}
-
-function new_save_file($save_file) {
-    $result =  mysql_query("CREATE TABLE `save_files`.`".$save_file."` (REGNO INT(11), ENNAME VARCHAR(50), CHNAME VARCHAR(50), CLASSCODE CHAR(2), CLASSNO tinyint(4), SCHHOUSE CHAR(1), SEX CHAR(1), TIME TIMESTAMP DEFAULT 0);");
-    return set_save_file_table($_POST["record"]) && $result;
 }
 ?>

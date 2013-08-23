@@ -15,7 +15,7 @@ $(function() {
         $("#re-password").val("");
         $("#admin-password").val("");
     });
-    $("#submit").click(function() {
+    $("#submit-user").click(function() {
         var account_type = $("#account-type").val();
         var username = $("#username").val();
         var admin_pass = $("#admin-password").val();

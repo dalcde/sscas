@@ -4,7 +4,7 @@ Select attendance record
 <div id="student-record-select-div">
     <?php
         require_once("settings-modules/add-student-record/functions.php");
-        $table = list_tables();
+        $table = list_records_tables();
         foreach ($table as $rec) {
             echo "<a href=\"#\" class=\"student-record-select\">".$rec."</a>";
         }
