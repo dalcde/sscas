@@ -1,4 +1,4 @@
-<?
+<?php
 function list_tables() {
     mysql_select_db("save_files");
     $result = mysql_query("SHOW TABLES");

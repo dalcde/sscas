@@ -1,4 +1,4 @@
-<?
+<?php
     function list_tables() {
     $result = mysql_query("SHOW TABLES FROM student_records");
 

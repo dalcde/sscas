@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../../libs/mysql-connect.php";
+require_once("../../libs/mysql-connect.php");
 require_once("../../libs/config.php");
 require_once("functions.php");
 
