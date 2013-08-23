@@ -1,9 +1,7 @@
-var selection = "New User";
 $(function() {
     $(".user-accounts-select").click(function() {
-        selection = $(this).html();
-        if (selection != "New User") {
-            $("#username").val(selection);
+        if ($(this).html() != "New User") {
+            $("#username").val($(this).html());
             $("#username").prop('disabled', true);
         } else {
             $("#username").prop('disabled', false);
@@ -24,12 +22,9 @@ $(function() {
         $.ajax({
             type: "POST",
             url: "settings-modules/user-accounts/process.php",
-            data: "new_user=" + (selection == "New User") + "&username=" + username + "&admin_pass=" + admin_pass + "&new_pass=" + new_pass + "&re_pass=" + re_pass + "&account_type=" + (account_type == "Admin" ? 0: 1),
+            data: "username=" + username + "&admin_pass=" + admin_pass + "&new_pass=" + new_pass + "&re_pass=" + re_pass + "&account_type=" + (account_type == "Admin" ? 0: 1),
             success: function (data) {
                 switch (data) {
-                    case "0":
-                    alert("Username already in use");
-                    break;
                     case "1":
                     alert("Admin password incorrect");
                     break;

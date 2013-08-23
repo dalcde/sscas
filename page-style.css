@@ -123,6 +123,7 @@ input[type=submit]:hover,input[type=button]:hover {
     border: solid thin #aac;
     padding: 5px;
     height: 300px;
+    float: left; /* float: left is a hack to prevent div from expanding to occupy the whole screen */
 }
 a.save-file-select, a.student-record-select, a.user-accounts-select {
     color: #000;
