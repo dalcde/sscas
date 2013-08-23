@@ -1,7 +1,7 @@
 <?php
 require_once("../libs/mysql-connect.php");
 require_once("../libs/config.php");
-require_once("tcpdf/tcpdf.php");
+require_once("../ext-libs/tcpdf/tcpdf.php");
 
 $show_by = $_POST["show_by"];
 $show = explode(",",$_POST["show"]);
