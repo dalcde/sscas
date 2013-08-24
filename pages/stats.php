@@ -17,12 +17,12 @@ require_once("pages/stats-layout.php");
   </div>
   <div id="by-form">
       <?php
-          echo get_form_table();
+          echo get_field_table("FORM", "Form");
       ?>
   </div>
   <div id="by-house">
       <?php
-          echo get_house_table();
+          echo get_field_table("SCHHOUSE", "House");
       ?>
     </table>
   </div>

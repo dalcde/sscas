@@ -13,7 +13,7 @@ function get_student_number($condition) {
   return mysql_fetch_row(mysql_query("SELECT COUNT(IF(".$condition.", 1, NULL)) FROM save_files.`".get_save_file_table()."`"))[0];
 }
 
-function count_field($field) {
+function list_field($field) {
  $query = mysql_query("SELECT DISTINCT $field FROM save_files.`".get_save_file_table()."`");
 
  $field = array();
@@ -45,34 +45,4 @@ function get_number_by_field($field, $condition) {
  return $entries;
 }
 
-function get_forms() {
- $classes = count_field("CLASSCODE");
-
- $forms = [];
- foreach ($classes as $class) {
-  $string = substr($class, 0, 1);
-  if (!in_array($string, $forms)) {
-   array_push($forms, $string);
-  }
- }
- return $forms;
-}
-
-function get_number_by_form($condition) {
- $array = get_number_by_field("CLASSCODE", $condition);
-
- $forms = get_forms();
- $results = [];
-
- foreach ($forms as $form) {
-  $results[$form] = 0;
- }
-
- foreach ($array as $class => $number) {
-  $form = substr($class, 0, 1);
-  $results[$form] = $results[$form] + $number;
- }
-
- return $results;
-}
 ?>
