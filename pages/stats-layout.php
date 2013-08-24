@@ -1,12 +1,13 @@
 <?php
 function get_all_table() {
-    $string = "";
+    $string = "<table class='stats-table'>\n";
 
-    $string .= "Total: ".get_student_number(ALL_CONDITION)."<br />\n";
-    $string .= "Present: ".get_student_number(PRESENT_CONDITION)."<br />\n";
-    $string .= "Late: ".get_student_number(LATE_CONDITION)."<br />\n";
-    $string .= "Absent: ".get_student_number(ABSENT_CONDITION)."<br />\n";
+    $string .= "<tr><th>Total</th> <td>".get_student_number(ALL_CONDITION)."</td></tr>\n";
+    $string .= "<tr><th>Present</th> <td>".get_student_number(PRESENT_CONDITION)."</td></tr>\n";
+    $string .= "<tr><th>Late</th> <td>".get_student_number(LATE_CONDITION)."</td></tr>\n";
+    $string .= "<tr><th>Absent</th> <td>".get_student_number(ABSENT_CONDITION)."</td></tr>\n";
 
+    $string .="</table>\n";
     return $string;
 }
 
