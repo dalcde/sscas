@@ -22,7 +22,7 @@ function add_student_record_to_save_file($student_record) {
         $regno = $row["REGNO"];
         $check_result = mysql_query("SELECT * FROM `save_files`.`$save_file` WHERE REGNO=$regno");
         if (mysql_num_rows($check_result) == 0 ) {
-            mysql_query("INSERT `save_files`.`$save_file` (REGNO, ENNAME, CHNAME, CLASSCODE, CLASSNO, SCHHOUSE, SEX) SELECT * from `student_records`.`$student_record` WHERE REGNO=$regno;");
+            mysql_query("INSERT `save_files`.`$save_file` (REGNO, ENNAME, CHNAME, CLASSCODE, CLASSNO, FORM, SCHHOUSE, SEX) SELECT * from `student_records`.`$student_record` WHERE REGNO=$regno;");
         } else {
             $duplicate ++;
         }

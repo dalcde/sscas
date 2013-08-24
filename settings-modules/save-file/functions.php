@@ -13,9 +13,9 @@ function list_tables() {
 }
 
 function new_save_file($save_file) {
-    $result =  mysql_query("CREATE TABLE `save_files`.`".$save_file."` (REGNO INT(11), ENNAME VARCHAR(50), CHNAME VARCHAR(50), CLASSCODE CHAR(2), CLASSNO tinyint(4), SCHHOUSE CHAR(1), SEX CHAR(1), TIME TIMESTAMP DEFAULT 0);");
+    $result =  mysql_query("CREATE TABLE `save_files`.`".$save_file."` (REGNO INT(11), ENNAME VARCHAR(50), CHNAME VARCHAR(50), CLASSCODE CHAR(2), CLASSNO tinyint(4), FORM CHAR(1), SCHHOUSE CHAR(1), SEX CHAR(1), TIME TIMESTAMP DEFAULT 0);");
     if ($result) {
-        mysql_query("INSERT INTO save_files.`$save_file` VALUES (0, 'TIME_PROPERTY', '', '', 0, '', '', CURRENT_TIMESTAMP)");
+        mysql_query("INSERT INTO save_files.`$save_file` VALUES (0, 'TIME_PROPERTY', '', '', 0, '', '', '', CURRENT_TIMESTAMP)");
     }
     return set_save_file_table($save_file) && $result;
 }
