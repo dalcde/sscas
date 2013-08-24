@@ -24,8 +24,10 @@ require_once("pages/stats-layout.php");
       <?php
           echo get_field_table("SCHHOUSE", "House");
       ?>
-    </table>
   </div>
   <div id="by-class">
+    <?php
+        echo get_class_table();
+    ?>
   </div>
 </div>

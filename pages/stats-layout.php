@@ -51,4 +51,46 @@ function get_field_table($field, $name) {
     return $string;
 }
 
+function get_class_table() {
+    $forms = list_field("FORM");
+    $classes = list_field("CLASSCODE");
+
+    $present = get_number_by_field("CLASSCODE", PRESENT_CONDITION);
+    $late = get_number_by_field("CLASSCODE", LATE_CONDITION);
+    $all = get_number_by_field("CLASSCODE", ALL_CONDITION);
+
+    $classcode = [];
+    foreach ($classes as $class) {
+         if (array_search(substr($class, 1, 1), $classcode) === false) {
+             array_push($classcode, substr($class, 1, 1));
+         }
+    }
+    $string = "<table class='stats-table'>\n";
+
+    $string .="<tr>\n";
+    $string .="<td />\n";
+
+    foreach ($forms as $row) {
+        $string.= "<th>".$row."</th>\n";
+    }
+    $string .= "</tr>\n";
+
+    foreach ($classcode as $class) {
+        $string .="<tr>\n";
+        $string .="<th>$class</th>\n";
+        foreach ($forms as $form) {
+            $cn = $form.$class;
+            $string .= "<td>";
+            if (array_search($cn, $classes) !== false) {
+                $string .= $present[$cn]."+(".$late[$cn].")/".$all[$cn];
+            }
+            $string .= "</td>\n";
+        }
+        $string .="</tr>\n";
+    }
+
+    $string .= "</table>\n";
+    $string .= "NOTE: notation used is as follows: <b>present + (late) / total</b>";
+    return $string;
+}
 ?>
