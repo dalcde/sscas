@@ -4,10 +4,6 @@ define("ABSENT_CONDITION", "REGNO!=0 && TIME=0");
 define("PRESENT_CONDITION", "REGNO!=0 && TIME>'_TIME'");
 define("LATE_CONDITION", "REGNO!=0 && TIME != 0 && TIME<'_TIME'");
 
-function get_time_boundary() {
-  return mysql_fetch_row(mysql_query("SELECT TIME FROM save_files.`".get_save_file_table()."` WHERE REGNO=0"))[0];
-}
-
 function get_student_number($condition) {
   $condition = str_replace("_TIME", get_time_boundary(), $condition);
   return mysql_fetch_row(mysql_query("SELECT COUNT(IF(".$condition.", 1, NULL)) FROM save_files.`".get_save_file_table()."`"))[0];
