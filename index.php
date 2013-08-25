@@ -13,6 +13,7 @@ require_once("libs/config.php");
     <script type="text/javascript" src="ext-libs/jquery-timeentry.js"></script>
     <link rel="stylesheet" type="text/css" href="page-style.css" />
     <link rel="stylesheet" type="text/css" href="ext-libs/aristo.css" />
+    <meta charset="utf-8" />
   </head>
   <body>
     <?php if (logged_in()) {
