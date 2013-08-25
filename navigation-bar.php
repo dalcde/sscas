@@ -2,7 +2,8 @@
 $pages=["Main"=>"home",
         "Input"=>"input",
 	"Statistics"=>"stats",
-        "Report"=>"report"
+        "Report"=>"report",	
+	"View All Records"=>"view-all"
         ];
 
 $admin_pages=["Settings"=>"settings",
