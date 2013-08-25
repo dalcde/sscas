@@ -7,7 +7,22 @@ $table_items = ["REGNO", "ENNAME", "CHNAME", "CLASSCODE", "CLASSNO", "SCHHOUSE",
 <script src="ext-libs/jquery.jeditable.js" type="text/javascript"></script>
 <script src="ext-libs/jquery.dataTables.editable.js" type="text/javascript"></script>
 
-<script src="pages/view-all.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+    var table = $('#view-all').dataTable({
+	"bJQueryUI": true
+    });
+    <?php
+ 
+    if (is_admin()) {
+	echo "table.makeEditable({
+                  'sUpdateURL': 'pages/view-all-edit.php',
+                  'aoColumns': [null, null, null, null, null, null, {}, null]
+               });";
+    }
+    ?>
+});
+</script>
 <div style="float: left">
 <table id="view-all" width="100%">
   <thead>
