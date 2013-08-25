@@ -24,13 +24,13 @@ if (preg_match($time_regex, $TIME) !== 1) {
 
     $result =  mysql_query("UPDATE save_files.`$TABLE` SET TIME='$TIME' WHERE REGNO=$REGNO");
     if ($result) {
-	$log_file = fopen("../log/$TABLE.log", "a");
-	if ($log_file) {
+        $log_file = fopen("../log/$TABLE.log", "a");
+        if ($log_file) {
             fwrite($log_file, $log_line."\n");
-	}
-	echo $TIME;
+        }
+        echo $TIME;
     } else {
-	echo "Failed to update time";
+        echo "Failed to update time";
     }
 }
 ?>

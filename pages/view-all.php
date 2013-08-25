@@ -10,12 +10,12 @@ $table_items = ["REGNO", "ENNAME", "CHNAME", "CLASSCODE", "CLASSNO", "SCHHOUSE",
 <script type="text/javascript">
 $(function() {
     var table = $('#view-all').dataTable({
-	"bJQueryUI": true
+        "bJQueryUI": true
     });
     <?php
  
     if (is_admin()) {
-	echo "table.makeEditable({
+        echo "table.makeEditable({
                   'sUpdateURL': 'pages/view-all-edit.php',
                   'aoColumns': [null, null, null, null, null, null, {}, null]
                });";
@@ -44,22 +44,22 @@ $(function() {
       $time = strtotime(get_time_boundary());
       while ($row = mysql_fetch_assoc($query)) {
           if ($row["REGNO"] == 0) {
-	      continue;
-	  }
+              continue;
+          }
 
-	  echo "<tr id=\"".$row["REGNO"]."\">\n";
-	  foreach ($table_items as $item) {
-	      echo "<td>".$row[$item]."</td>\n";
-	  }
-	  $status = "Late";
-	  if ($row["TIME"] == "0000-00-00 00:00:00") {
-	      $status = "Absent";
-	  } else if (strtotime($row["TIME"]) > $time) {
-	      $status = "Present";
-	  }
+          echo "<tr id=\"".$row["REGNO"]."\">\n";
+          foreach ($table_items as $item) {
+              echo "<td>".$row[$item]."</td>\n";
+          }
+          $status = "Late";
+          if ($row["TIME"] == "0000-00-00 00:00:00") {
+              $status = "Absent";
+          } else if (strtotime($row["TIME"]) > $time) {
+              $status = "Present";
+          }
 
-	  echo "<td>".$status."</td>\n";
-	  echo "</tr>\n";
+          echo "<td>".$status."</td>\n";
+          echo "</tr>\n";
       }
     ?>
   </tbody>
