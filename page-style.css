@@ -180,3 +180,7 @@ a.save-file-select-current {
     cursor: pointer;
     * cursor: hand;
 } 
+
+td.center {
+    text-align: center;
+}

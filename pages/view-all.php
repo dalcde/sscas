@@ -11,7 +11,21 @@ $table_items = ["REGNO", "ENNAME", "CHNAME", "CLASSCODE", "CLASSNO", "SCHHOUSE",
 $(function() {
     var table = $('#view-all').dataTable({
         "bJQueryUI": true,
-        "sPaginationType": "full_numbers"
+        "sPaginationType": "full_numbers",
+        "iDisplayLength": 25,
+        "aoColumns": [
+        {"sWidth": "5%"},
+        {"sWidth": "40%"},
+        {"sWidth": "5%"},
+        {"sWidth": "3%", "sClass": "center"},
+        {"sWidth": "3%", "sClass": "center"},
+        {"sWidth": "3%", "sClass": "center"},
+        {"sWidth": "30%"},
+        {"sWidth": "9%"}]
+    });
+
+    $("select.#filter").change(function() {
+        table.fnFilter($(this).val(), 7);
     });
     <?php
  
@@ -64,5 +78,16 @@ $(function() {
       }
     ?>
   </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="6">Show: </th>
+      <th colspan="2">
+        <select id="filter">
+          <option value=''>All</option>
+          <option value='Present'>Present</option>
+          <option value='Late'>Late</option>
+          <option value='Absent'>Absent</option>
+        </select>
+      </th>
 </table>
 </div>
