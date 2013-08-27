@@ -10,7 +10,8 @@ $table_items = ["REGNO", "ENNAME", "CHNAME", "CLASSCODE", "CLASSNO", "SCHHOUSE",
 <script type="text/javascript">
 $(function() {
     var table = $('#view-all').dataTable({
-        "bJQueryUI": true
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
     });
     <?php
  
