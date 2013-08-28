@@ -14,6 +14,12 @@ require_once("libs/config.php");
     <link rel="stylesheet" type="text/css" href="page-style.css" />
     <link rel="stylesheet" type="text/css" href="ext-libs/aristo.css" />
     <meta charset="utf-8" />
+
+    <script type="text/javascript">
+    $(function() {
+        $("input[type=submit], input[type=button]").button();
+    });
+    </script>
   </head>
   <body>
     <?php if (logged_in()) {

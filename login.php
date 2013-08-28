@@ -5,7 +5,17 @@ session_start();
 <!DOCTYPE html>
 <html>
   <head>
+    <script type="text/javascript" src="ext-libs/jquery.js"></script>
+    <script type="text/javascript" src="ext-libs/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="page-style.css" />
+    <link rel="stylesheet" type="text/css" href="ext-libs/aristo.css" />
+    <meta charset="utf-8" />
+
+    <script type="text/javascript">
+    $(function() {
+        $("input[type=submit], input[type=button]").button();
+    });
+    </script>
   </head>
   <body>
     <h3 style="text-align: center">Login to SSC Attendance System</h3>
