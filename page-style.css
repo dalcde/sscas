@@ -19,6 +19,7 @@ body {
     top: 0px;
     right: 0px;
     bottom: 0px;
+    overflow: auto;
     margin-left: 200px;
     padding-left: 6px;
 }
