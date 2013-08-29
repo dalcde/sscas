@@ -24,9 +24,10 @@ $(function() {
         {"sWidth": "9%"}]
     });
 
-    $("select.#filter").change(function() {
+    $("#filter").change(function() {
         table.fnFilter($(this).val(), 7);
     });
+
     <?php
  
     if (is_admin()) {
@@ -89,5 +90,7 @@ $(function() {
           <option value='Absent'>Absent</option>
         </select>
       </th>
+    </tr>
+  </tfoot>
 </table>
 </div>
