@@ -12,7 +12,7 @@ require_once("libs/config.php");
     <script type="text/javascript" src="ext-libs/jquery-ui.js"></script>
     <script type="text/javascript" src="ext-libs/jquery-timeentry.js"></script>
     <link rel="stylesheet" type="text/css" href="page-style.css" />
-    <link rel="stylesheet" type="text/css" href="ext-libs/aristo.css" />
+    <link rel="stylesheet" type="text/css" href="ext-libs/bootstrap.css" />
     <meta charset="utf-8" />
 
     <script type="text/javascript">

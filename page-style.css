@@ -55,10 +55,6 @@ a.menu-item:hover{
 
 
 input[type=text],input[type=password],input[type=tel] {
-    background-color: #eee;
-    border-color: #ccc;
-    border-style: solid;
-    border-width: thin;
     height: 30px;
     width: 200px;
     font-size: 150%;
