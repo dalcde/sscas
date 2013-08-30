@@ -16,18 +16,18 @@ require_once("pages/stats-layout.php");
     ?>
   </div>
   <div id="by-form">
-      <?php
-          echo get_field_table("FORM", "Form");
-      ?>
+    <?php
+      echo get_field_table("FORM", "Form");
+    ?>
   </div>
   <div id="by-house">
-      <?php
-          echo get_field_table("SCHHOUSE", "House");
-      ?>
+    <?php
+      echo get_field_table("SCHHOUSE", "House");
+    ?>
   </div>
   <div id="by-class">
     <?php
-        echo get_class_table();
+      echo get_field_table("CLASSCODE", "Class");
     ?>
   </div>
 </div>
