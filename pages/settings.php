@@ -2,6 +2,7 @@
 admin_only();
 $PAGES=['save-file'=>'Save Files',
         'add-student-record'=>'Add Student Record',
+        'upload-photo'=>'Upload Photos',
         'time-property'=>'Time Property',
         'user-accounts'=>'User Accounts'];
 ?>
