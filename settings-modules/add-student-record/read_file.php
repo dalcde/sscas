@@ -5,7 +5,7 @@ require_once("../../libs/config.php");
 require_once("functions.php");
 
 function utf8_fopen_read($fileName) {
-    $fc = iconv('UTF-16', 'UTF-8', file_get_contents($fileName));
+    $fc = iconv('UTF-8', 'UTF-8', file_get_contents($fileName));
     $handle=fopen("php://memory", "rw");
     fwrite($handle, $fc);
     fseek($handle, 0);
