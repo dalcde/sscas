@@ -70,7 +70,7 @@ $(function() {
           $status = "Late";
           if ($row["TIME"] == "0000-00-00 00:00:00") {
               $status = "Absent";
-          } else if (strtotime($row["TIME"]) > $time) {
+          } else if (strtotime($row["TIME"]) < $time) {
               $status = "Present";
           }
 

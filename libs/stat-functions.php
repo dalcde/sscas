@@ -1,8 +1,8 @@
 <?php
 define("ALL_CONDITION", "REGNO!=0");
 define("ABSENT_CONDITION", "REGNO!=0 && TIME=0");
-define("PRESENT_CONDITION", "REGNO!=0 && TIME>'_TIME'");
-define("LATE_CONDITION", "REGNO!=0 && TIME != 0 && TIME<'_TIME'");
+define("PRESENT_CONDITION", "REGNO!=0 && TIME != 0 && TIME<'_TIME'");
+define("LATE_CONDITION", "REGNO!=0 && TIME>'_TIME'");
 
 function get_student_number($condition) {
   $condition = str_replace("_TIME", get_time_boundary(), $condition);
