@@ -17,7 +17,7 @@ if (preg_match($time_regex, $TIME) !== 1) {
 } else {
     $TABLE=get_save_file_table();
 
-    $query = mysql_query("SELECT * FROM save_files.`".$TABLE."` WHERE REGNO=".$_POST["REGNO"]);
+    $query = mysql_query("SELECT * FROM save_files.`".$TABLE."` WHERE REGNO=$REGNO");
     $array = mysql_fetch_array($query);
 
     $log_line = "EDIT  ".$_SERVER["REMOTE_ADDR"]." $REGNO ".$array["TIME"]."->$TIME";
