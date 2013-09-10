@@ -10,10 +10,10 @@ function get_all_table() {
     $string .= "</tr>\n";
 
     $string .= "<tr>\n";
-    $string .= "<td>".get_student_number(ALL_CONDITION)."</td>\n";
     $string .= "<td>".get_student_number(PRESENT_CONDITION)."</td>\n";
     $string .= "<td>".get_student_number(LATE_CONDITION)."</td>\n";
     $string .= "<td>".get_student_number(ABSENT_CONDITION)."</td>\n";
+    $string .= "<td>".get_student_number(ALL_CONDITION)."</td>\n";
     $string .= "</tr>\n";
 
     $string .="</table>\n";
