@@ -10,6 +10,10 @@ $REGNO = $_POST['id'];
 $TIME = $_POST['value'];
 
 $time_regex = "/[0-9]{4}-[0-1][0-9]*-[0-3][0-9] [0-2][0-9]:[0-6][0-9]:[0-6][0-9]/";
+
+if ($TIME == "") {
+    $TIME = "0000-00-00 00:00:00";
+}
 if (preg_match($time_regex, $TIME) !== 1) {
     echo "Incorrect time string";
 } else if (strtotime($TIME) === FALSE){
@@ -28,7 +32,7 @@ if (preg_match($time_regex, $TIME) !== 1) {
         if ($log_file) {
             fwrite($log_file, $log_line."\n");
         }
-        echo $TIME;
+        echo $_POST['value'];
     } else {
         echo "Failed to update time";
     }
