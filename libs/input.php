@@ -47,7 +47,7 @@ function edit_entry($regno, $new) {
     $query = mysql_query("SELECT * FROM save_files.`$TABLE` WHERE REGNO=$regno");
     $array = mysql_fetch_array($query);
 
-    $log_line = date("Y-m-d H:i:s", time())." EDIT  ".$_SERVER["REMOTE_ADDR"]." $regno ".$array["TIME"]."-> $new";
+    $log_line = date("Y-m-d H:i:s", time())." EDIT  ".$_SERVER["REMOTE_ADDR"]." $regno ".$array["TIME"]."->$new";
 
     $result =  mysql_query("UPDATE save_files.`$TABLE` SET TIME='$new' WHERE REGNO=$regno");
     if ($result) {
