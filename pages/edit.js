@@ -60,7 +60,7 @@ $(function() {
         $.ajax({
             type: "POST",
             url: "pages/edit-process.php",
-            data: "REGNO="+REGNO + "&TIME=0",
+            data: "REGNO="+REGNO + "&TIME=0000-00-00 00:00:00",
              success: function(data) {
                 if (data) {
                     alert("Successfully updated timestamp");

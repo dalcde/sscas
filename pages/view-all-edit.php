@@ -17,7 +17,7 @@ if ($TIME == "") {
 }
 if (preg_match($time_regex, $TIME) !== 1) {
     echo "Incorrect time string";
-} else if (strtotime($TIME) === FALSE){
+} else if (strtotime($TIME) === FALSE && $TIME != "0000-00-00 00:00:00"){
     echo "Incorrect time string";
 } else {
     $result = edit_entry($REGNO, $TIME);
