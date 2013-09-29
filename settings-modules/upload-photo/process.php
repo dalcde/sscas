@@ -23,7 +23,7 @@ if ($_FILES["photo-file"]["name"]){
     if ($okay) {
         $zip = new ZipArchive();
         if ($zip->open($source)) {
-	    $tmpdir = sys_get_temp_dir();
+            $tmpdir = sys_get_temp_dir();
             $tmpdir = rtrim($tmpdir, "/\\");
 
             mkdir("$tmpdir/photos");
@@ -36,8 +36,8 @@ if ($_FILES["photo-file"]["name"]){
                     if ($arr[count($arr)-1] != "jpg" && $arr[count($arr)-1] != "JPG") {
                         continue;
                     }
-		    $arr[count($arr)-1] = "JPG";
-		    $newFileName = implode(".", $arr);
+                    $arr[count($arr)-1] = "JPG";
+                    $newFileName = implode(".", $arr);
                     rename("$tmpdir/photos/".$fileName, "../../photos/".$newFileName);
                 }
                 closedir($handle);
