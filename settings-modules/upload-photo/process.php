@@ -23,17 +23,22 @@ if ($_FILES["photo-file"]["name"]){
     if ($okay) {
         $zip = new ZipArchive();
         if ($zip->open($source)) {
-            mkdir("/tmp/photos");
-            $zip->extractTo("/tmp/photos");
+	    $tmpdir = sys_get_temp_dir();
+            $tmpdir = rtrim($tmpdir, "/\\");
+
+            mkdir("$tmpdir/photos");
+            $zip->extractTo("$tmpdir/photos");
             $zip->close();
 
-            if ($handle = opendir('/tmp/photos')) {
+            if ($handle = opendir("$tmpdir/photos")) {
                 while (false !== ($fileName = readdir($handle))) {
                     $arr = explode(".", $fileName);
-                    if ($arr[count($arr)] != "jpg" && $arr[count($arr)-1] != "JPG") {
+                    if ($arr[count($arr)-1] != "jpg" && $arr[count($arr)-1] != "JPG") {
                         continue;
                     }
-                    rename("/tmp/photos/".$fileName, "../../photos/".$fileName);
+		    $arr[count($arr)-1] = "JPG";
+		    $newFileName = implode(".", $arr);
+                    rename("$tmpdir/photos/".$fileName, "../../photos/".$newFileName);
                 }
                 closedir($handle);
             }
