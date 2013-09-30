@@ -17,7 +17,6 @@ $admin_pass = hash("sha256", $admin_pass);
 
 $new_pass = $_POST["new_pass"];
 $re_pass = $_POST["re_pass"];
-$account_type = $_POST["account_type"];
 
 if ($admin_pass != $_SESSION["password_hash"]) {
     echo 1;
@@ -26,7 +25,7 @@ if ($admin_pass != $_SESSION["password_hash"]) {
 } else {
     $password = hash("sha256", $new_pass);
     if (mysql_num_rows(mysql_query("SELECT * FROM sscas.logins WHERE username=\"$username\"")) == 0) {
-	mysql_query("INSERT INTO sscas.logins VALUES (\"$username\", \"$password\", $account_type)");
+	mysql_query("INSERT INTO sscas.logins VALUES (\"$username\", \"$password\", 1)");
     } else {
 	mysql_query("UPDATE sscas.logins SET password_hash=\"$password\", type=$account_type WHERE username=\"$username\"");
     }
