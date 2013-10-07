@@ -32,6 +32,12 @@
       </td>
     </tr>
     <tr>
+      <td>Header (Optional)</td>
+      <td>
+        <input type="text" id="header" action=""/><br />
+      </td>
+    </tr>
+    <tr>
       <td colspan="2">
         <input id="generate-button" type="button" value="Generate"></input>
       </td>

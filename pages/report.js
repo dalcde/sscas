@@ -11,6 +11,7 @@ $(function() {
         $("#loader").show();
         var show_by = $('input[type=radio][name=show-by]:checked').val();
         var output_format = $('input[type=radio][name=format]:checked').val();
+        var header = $('#header').val();
         var show = [];
         for (var i in CHECKBOX_OPTIONS) {
             if ($("#" + CHECKBOX_OPTIONS[i]).prop('checked')) {
@@ -20,7 +21,7 @@ $(function() {
         $.ajax({
             type: "POST",
             url: "pages/report-process.php",
-            data: "show_by="+show_by+"&show="+show.join(",")+"&format="+output_format,
+            data: "show_by="+show_by+"&show="+show.join(",")+"&format="+output_format+"&header="+header,
             success: function(data) {
                 window.open(data);
                 $("#loader").hide();

@@ -6,7 +6,7 @@ require_once("../ext-libs/tcpdf/tcpdf.php");
 $show_by = $_POST["show_by"];
 $show = explode(",",$_POST["show"]);
 $output_format = $_POST["format"];
-
+$header = $_POST["header"];
 
 #                 HEADER, DATABASE_ENTRY, WIDTH
 $PAGE_COLUMNS = [["Class", "CLASSCODE", 13],
@@ -40,7 +40,7 @@ function sort_record($record) {
     return $record;
 }
 
-function generate_page($name, $records, $output) {
+function generate_page($name, $header, $records, $output) {
     global $output_format;
 
     usort($records, function($a, $b) {
@@ -55,7 +55,7 @@ function generate_page($name, $records, $output) {
     
     switch ($output_format) {
     case OUTPUT_FORMAT_PDF:
-        generate_page_pdf($name, $records, $output);
+        generate_page_pdf($name, $header, $records, $output);
         break;
     case OUTPUT_FORMAT_CSV:
         generate_page_csv($name, $records, $output);
@@ -63,12 +63,15 @@ function generate_page($name, $records, $output) {
     }
 }
 
-function generate_page_pdf($name, $records, $pdf) {
+function generate_page_pdf($name, $header, $records, $pdf) {
     global $PAGE_COLUMNS;
 
     $pdf->AddPage();
     $pdf->SetFont("","B",16);
-    $pdf->Cell(40,8,$name);
+    $pdf->Cell(0,8,$header,0,0,"C");
+    $pdf->Ln();
+    $pdf->SetFont("","B",14);
+    $pdf->Cell(0,8,$name);
     $pdf->Ln();
 
 # Header
@@ -142,7 +145,7 @@ if ($output_format == OUTPUT_FORMAT_PDF) {
     fputcsv($output, $items);
 }
 if ($show_by == "all") {
-    generate_page("All", $results, $output);
+    generate_page("All", $header, $results, $output);
 } else if ($show_by == "house") {
     $houses_query = mysql_query("SELECT DISTINCT SCHHOUSE FROM save_files.`$save_file`");
     $houses = [];
@@ -162,7 +165,7 @@ if ($show_by == "all") {
             global $house;
             return $var["SCHHOUSE"] == $house;
         });
-        generate_page($HOUSE_NAMES[$house], $filtered, $output);
+        generate_page($HOUSE_NAMES[$house], $header, $filtered, $output);
     }
 } else if ($show_by == "class") {
     $classes_query = mysql_query("SELECT DISTINCT CLASSCODE FROM save_files.`$save_file`");
@@ -183,7 +186,7 @@ if ($show_by == "all") {
             global $class;
             return $var["CLASSCODE"] == $class;
         });
-        generate_page($class, $filtered, $output);
+        generate_page($class, $header, $filtered, $output);
     }
 }
 
