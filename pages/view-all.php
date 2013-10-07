@@ -21,7 +21,8 @@ $(function() {
         {"sWidth": "3%", "sClass": "center"},
         {"sWidth": "3%", "sClass": "center"},
         {"sWidth": "30%"},
-        {"sWidth": "9%"}]
+        {"sWidth": "9%"}],
+	"aaSorting": [[3, "asc"], [4, "asc"]]
     });
 
     $("#filter").change(function() {
