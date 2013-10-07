@@ -6,21 +6,7 @@ if ($_FILES["photo-file"]["name"]){
 
     $name = explode(".", $filename);
 
-    $okay = false;
-
-    $accepted_types = array('application/zip', 'application/x-zip-compressed', 'multipart/x-zip', 'application/x-compressed');
-    foreach( $accepted_types as $mime_type) {
-        if( $mime_type == $type ) {
-            $okay = true;
-            break;
-        } 
-    }
-
-    if (strtolower($name[1]) != "zip") {
-        $okay = false;
-    }
-
-    if ($okay) {
+    if (strtolower($name[1]) == "zip") {
         $zip = new ZipArchive();
         if ($zip->open($source)) {
             $tmpdir = sys_get_temp_dir();
