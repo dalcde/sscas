@@ -31,10 +31,6 @@
         <td><input type="password" id="re-password" /></td>
       </tr>
       <tr>
-        <td>Account type:</td>
-        <td><select id="account-type"><option>Regular</option><option>Admin</option></select></td>
-      </tr>
-      <tr>
         <td />
         <td><input type="submit" id="submit-user" value="Submit" /></td>
       </tr>
