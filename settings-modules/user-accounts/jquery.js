@@ -22,7 +22,7 @@ $(function() {
         $.ajax({
             type: "POST",
             url: "settings-modules/user-accounts/process.php",
-            data: "username=" + username + "&admin_pass=" + admin_pass + "&new_pass=" + new_pass + "&re_pass=" + re_pass),
+            data: "username=" + username + "&admin_pass=" + admin_pass + "&new_pass=" + new_pass + "&re_pass=" + re_pass,
             success: function (data) {
                 switch (data) {
                     case "1":
