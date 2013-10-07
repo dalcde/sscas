@@ -27,7 +27,7 @@ if ($admin_pass != $_SESSION["password_hash"]) {
     if (mysql_num_rows(mysql_query("SELECT * FROM sscas.logins WHERE username=\"$username\"")) == 0) {
 	mysql_query("INSERT INTO sscas.logins VALUES (\"$username\", \"$password\", 1)");
     } else {
-	mysql_query("UPDATE sscas.logins SET password_hash=\"$password\", type=$account_type WHERE username=\"$username\"");
+	mysql_query("UPDATE sscas.logins SET password_hash=\"$password\" WHERE username=\"$username\"");
     }
 }
 ?>
