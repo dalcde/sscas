@@ -114,9 +114,9 @@ $time_boundary = mysql_fetch_row(mysql_query("SELECT TIME FROM save_files.`$save
 $show_to_condition = ["present" => "(TIME <= '$time_boundary' && TIME != 0)",
                       "late" => "TIME > '$time_boundary'",
                       "absent" => "TIME = 0"];
-$STATUS_TO_SYMBOL = ["present" => "/",
-                     "late" => "ϕ",
-                     "absent" => "O"];
+$STATUS_TO_SYMBOL = ["present" => "Present",
+                     "late" => "Late",
+                     "absent" => "Absent"];
 $results = [];
 $SHOW_OPTIONS = ["present", "late", "absent"];
 
