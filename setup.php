@@ -22,7 +22,7 @@ if ($conn && !isset($_GET["force"])) {
   </head>
   <body>
     <h1 style="text-align:center">Setup SSCAS Attendance System</h1>
-    <div style="width: 222px; margin-left: auto; margin-right: auto">
+    <div style="width: 210px; margin-left: auto; margin-right: auto">
     <form action="setup-process.php" method="post">
       Enter MySQL root password:<br />
       <input type="password" name="mysql-pass"/><br />
