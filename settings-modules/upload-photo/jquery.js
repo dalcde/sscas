@@ -14,7 +14,7 @@ $(function() {
             contentType: false,
             processData: false,
             success: function(data) {
-                $("#loader").show();
+                $("#loader").hide();
                 alert(data);
             }
         });
