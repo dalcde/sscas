@@ -1,2 +1,4 @@
-photos
-tmp
+log/*.log
+photos/*.JPG
+tmp/*.pdf
+tmp/*.csv
