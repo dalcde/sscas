@@ -5,6 +5,7 @@ if ($_POST["REGNO"] == NULL || $_POST["REGNO"] == 0) {
     return;
 }
 
+$path = "../etc/passwords";
 require_once("../libs/general.php");
 require_once("../libs/mysql-connect.php");
 require_once("../libs/config.php");

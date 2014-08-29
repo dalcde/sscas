@@ -1,4 +1,6 @@
 <?php
+
+$path = "../etc/passwords";
 require_once("../libs/mysql-connect.php");
 require_once("../libs/config.php");
 require_once("../ext-libs/tcpdf/tcpdf.php");

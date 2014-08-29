@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+$path = "../etc/passwords";
 require_once("../libs/mysql-connect.php");
 require_once("../libs/config.php");
 require_once("../libs/general.php");
