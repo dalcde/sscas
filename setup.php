@@ -1,5 +1,9 @@
 <?php
-$conn = mysql_connect("localhost", "sscas", "sscas");
+$file = fopen("etc/passwords", "r");
+$password = trim(fgets($file));
+fclose($file);
+
+$conn = mysql_connect("localhost","sscas",$password);
 if ($conn && !isset($_GET["force"])) {
    header("location:login.php");
 }
